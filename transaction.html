@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Accounts | Basic Banking System</title>
+    <link rel="stylesheet"
+        href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css">
+    <link rel="stylesheet" href="assets/css/customer.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- navbar starts here  -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="./index.html">The Sparks Bank</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="./index.html">Home </a>
+                </li>
+                <li class="nav-item  active">
+                    <a class="nav-link" href="./customers.html"
+                        style="color: rgb(20, 24, 22)!important; background-color: rgba(180, 174, 180, 0.575);">Send Money</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+<div class="container">
+        <h2 class="text-center pt-4">Transaction History</h2>
+        
+       <br>
+       <div class="table-responsive-sm">
+    <table class="table table-hover table-striped table-condensed table-bordered">
+        <thead>
+            <tr>
+                <th class="text-center">S.No.</th>
+                <th class="text-center">Sender</th>
+                <th class="text-center">Receiver</th>
+                <th class="text-center">Amount</th>
+                <th class="text-center">Date & Time</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+
+            include 'config.yml';
+
+            $sql ="select * from transaction";
+
+            $query =mysqli_query($conn, $sql);
+
+            while($rows = mysqli_fetch_assoc($query))
+            {
+        ?>
+
+            <tr>
+            <td class="py-2"><?php echo $rows['sno']; ?></td>
+            <td class="py-2"><?php echo $rows['sender']; ?></td>
+            <td class="py-2"><?php echo $rows['receiver']; ?></td>
+            <td class="py-2"><?php echo $rows['balance']; ?> </td>
+            <td class="py-2"><?php echo $rows['datetime']; ?> </td>
+                
+        <?php
+            }
+
+        ?>
+        </tbody>
+    </table>
+
+    </div>
+</div>
